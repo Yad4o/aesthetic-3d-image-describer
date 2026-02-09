@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 50% 5%;
+    --foreground: 230 10% 90%;
+    
+    --card: 230 50% 7%;
+    --card-foreground: 230 10% 95%;
+    
+    --popover: 230 50% 7%;
+    --popover-foreground: 230 10% 95%;
+    
+    --primary: 199 89% 48%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 262 83% 58%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 230 30% 15%;
+    --muted-foreground: 230 10% 60%;
+    
+    --accent: 326 100% 60%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 230 30% 15%;
+    --input: 230 30% 15%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 230 50% 3%;
+    --foreground: 230 10% 95%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+  
+  .glass-card {
+    @apply glass shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .bg-nebula {
+    background: radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.15), transparent 50%),
+                radial-gradient(circle at 20% 80%, hsl(var(--secondary) / 0.15), transparent 40%),
+                radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.1), transparent 40%);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  }
+}

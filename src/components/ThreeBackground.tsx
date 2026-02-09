@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Float } from '@react-three/drei';
@@ -52,14 +54,30 @@ function StarField() {
 
 function FloatingSpheres() {
   return (
-    <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+    <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
       <mesh position={[5, 2, -5]}>
-        <sphereGeometry args={[1, 32, 32]} />
-        <meshStandardMaterial color="#0EA5E9" emissive="#0EA5E9" emissiveIntensity={0.5} roughness={0} metalness={1} transparent opacity={0.6} />
+        <sphereGeometry args={[1, 16, 16]} />
+        <meshStandardMaterial 
+          color="#0EA5E9" 
+          emissive="#0EA5E9" 
+          emissiveIntensity={0.8} 
+          roughness={0} 
+          metalness={1} 
+          transparent 
+          opacity={0.4} 
+        />
       </mesh>
       <mesh position={[-5, -2, -10]}>
-        <sphereGeometry args={[1.5, 32, 32]} />
-        <meshStandardMaterial color="#6366F1" emissive="#6366F1" emissiveIntensity={0.5} roughness={0} metalness={1} transparent opacity={0.4} />
+        <sphereGeometry args={[1.5, 16, 16]} />
+        <meshStandardMaterial 
+          color="#6366F1" 
+          emissive="#6366F1" 
+          emissiveIntensity={0.8} 
+          roughness={0} 
+          metalness={1} 
+          transparent 
+          opacity={0.3} 
+        />
       </mesh>
     </Float>
   );
@@ -67,14 +85,18 @@ function FloatingSpheres() {
 
 export const ThreeBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 -z-10 bg-[#020617]">
-      <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
+    <div className="fixed inset-0 -z-10 bg-[#020617] overflow-hidden">
+      <Canvas 
+        camera={{ position: [0, 0, 5], fov: 75 }}
+        dpr={[1, 2]} // Optimize for high-DPI screens but cap at 2
+        gl={{ antialias: false, powerPreference: 'high-performance' }} // Performance tweaks
+      >
+        <ambientLight intensity={0.4} />
+        <pointLight position={[10, 10, 10]} intensity={1.5} />
         <StarField />
         <FloatingSpheres />
       </Canvas>
-      <div className="absolute inset-0 bg-nebula pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/20 to-[#020617] pointer-events-none" />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import { Clock, ChevronRight } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';

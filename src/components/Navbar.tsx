@@ -1,6 +1,8 @@
+'use client'
+
 import React from 'react';
 import { useBlinkAuth } from '@blinkdotnew/react';
-import { blink } from '../lib/blink';
+import { blink } from '@/lib/blink';
 import { Sparkles, LogOut, User } from 'lucide-react';
 
 export const Navbar: React.FC = () => {

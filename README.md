@@ -1,59 +1,49 @@
-# Enhanced Vite React TypeScript Template
+# Aesthetic 3D Image Describer
 
-This template includes built-in detection for missing CSS variables between your Tailwind config and CSS files.
+A high-performance, production-ready AI Image Description Generator built with Next.js, Three.js, and Gemini Vision.
 
 ## Features
+- **Next.js App Router**: Optimized performance and SEO.
+- **Secure Backend**: All AI calls are processed server-side via API routes.
+- **Immersive 3D Experience**: Dynamic Starfield and Floating Spheres using `@react-three/fiber`.
+- **Aesthetic AI Vision**: Detailed, poetic, and mood-aware image descriptions.
+- **Glassmorphic UI**: Futuristic, high-contrast cyber aesthetic.
+- **History Persistence**: Automatic analysis history stored in SQLite.
 
-- **CSS Variable Detection**: Automatically detects if CSS variables referenced in `tailwind.config.cjs` are defined in `src/index.css`
-- **Enhanced Linting**: Includes ESLint, Stylelint, and custom CSS variable validation
-- **Shadcn/ui**: Pre-configured with all Shadcn components
-- **Modern Stack**: Vite + React + TypeScript + Tailwind CSS
+## Tech Stack
+- **Frontend**: Next.js 14, React, Tailwind CSS, Framer Motion
+- **3D Engine**: Three.js, React Three Fiber, Drei
+- **Backend**: Next.js API Routes, Blink SDK (Auth, DB, AI)
+- **AI Model**: Gemini 1.5 Flash (via Blink AI)
 
-## Available Scripts
+## Getting Started
 
-```bash
-# Run all linting (includes CSS variable check)
-npm run lint
+1. **Environment Variables**:
+   Copy `.env.example` to `.env.local` and add your project keys.
+   ```bash
+   cp .env.example .env.local
+   ```
 
-# Check only CSS variables
-npm run check:css-vars
+2. **Installation**:
+   ```bash
+   bun install
+   ```
 
-# Individual linting
-npm run lint:js    # ESLint
-npm run lint:css   # Stylelint
-```
+3. **Development**:
+   ```bash
+   bun dev
+   ```
 
-## CSS Variable Detection
+4. **Production Build**:
+   ```bash
+   bun build
+   bun start
+   ```
 
-The template includes a custom script that:
+## Security
+- **AI Keys**: Never exposed to the client. Managed via `BLINK_SECRET_KEY` on the server.
+- **Authentication**: Managed via Blink Auth for secure user sessions.
+- **Database**: SQLite with RLS (Row Level Security) ensuring users only see their own history.
 
-1. **Parses `tailwind.config.cjs`** to find all `var(--variable)` references
-2. **Parses `src/index.css`** to find all defined CSS variables (`--variable:`)
-3. **Cross-references** them to find missing definitions
-4. **Reports undefined variables** with clear error messages
-
-### Example Output
-
-When CSS variables are missing:
-```
-❌ Undefined CSS variables found in tailwind.config.cjs:
-   --sidebar-background
-   --sidebar-foreground
-   --sidebar-primary
-
-Add these variables to src/index.css
-```
-
-When all variables are defined:
-```
-✅ All CSS variables in tailwind.config.cjs are defined
-```
-
-## How It Works
-
-The detection happens during the `npm run lint` command, which will:
-- Exit with error code 1 if undefined variables are found
-- Show exactly which variables need to be added to your CSS file
-- Integrate seamlessly with your development workflow
-
-This prevents runtime CSS issues where Tailwind classes reference undefined CSS variables.
+## Deployment
+Ready for deployment on **Vercel**. Simply connect your repository and add the environment variables.
