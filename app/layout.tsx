@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, Inter } from 'next/font/google'
 import './globals.css'
-import { BlinkProvider } from '@/components/providers/blink-provider'
+import { Yad4oProvider } from '@/components/providers/yad4o-provider'
 
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'],
@@ -26,9 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${spaceGrotesk.variable} ${inter.variable} font-sans bg-background text-foreground antialiased`}>
-        <BlinkProvider>
+        <Yad4oProvider>
           {children}
-        </BlinkProvider>
+        </Yad4oProvider>
       </body>
     </html>
   )

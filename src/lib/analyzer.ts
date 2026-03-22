@@ -1,4 +1,4 @@
-import { blink } from '../lib/blink';
+import { yad4o } from '../lib/yad4o';
 
 export async function analyzeImage(file: File, userId: string) {
   try {
@@ -6,7 +6,7 @@ export async function analyzeImage(file: File, userId: string) {
     const extension = file.name.split('.').pop() || 'jpg';
     const path = `analyses/${Date.now()}-${Math.random().toString(36).slice(2)}.${extension}`;
     
-    const { publicUrl } = await blink.storage.upload(file, path);
+    const { publicUrl } = await yad4o.storage.upload(file, path);
 
     // 2. Call the secure server-side API route with timeout
     const controller = new AbortController();

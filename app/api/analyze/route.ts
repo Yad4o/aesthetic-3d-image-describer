@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@blinkdotnew/sdk'
 
-// Initialize Blink SDK with server-side secrets if available
-// Note: Blink SDK automatically handles auth via project ID and secret key if provided
-const blink = createClient({
+// Initialize Yad4o SDK with server-side secrets if available
+// Note: Yad4o SDK automatically handles auth via project ID and secret key if provided
+const yad4o = createClient({
   projectId: process.env.BLINK_PROJECT_ID || process.env.NEXT_PUBLIC_BLINK_PROJECT_ID || 'demo-project',
   secretKey: process.env.BLINK_SECRET_KEY, // Server-side only
 })
@@ -16,8 +16,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Image URL is required' }, { status: 400 })
     }
 
-    // Call Gemini Vision via Blink SDK (secure server-side call)
-    const { text } = await blink.ai.generateText({
+    // Call Gemini Vision via Yad4o SDK (secure server-side call)
+    const { text } = await yad4o.ai.generateText({
       model: 'google/gemini-3-flash',
       messages: [
         {
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 
     // Save to database if userId is provided
     if (userId) {
-      await (blink.db as any).history.create({
+      await (yad4o.db as any).history.create({
         userId,
         imageUrl,
         description: text,
