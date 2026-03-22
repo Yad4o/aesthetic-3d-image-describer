@@ -7,11 +7,11 @@ import { AnalysisResult } from './AnalysisResult';
 import { HistoryList } from './HistoryList';
 import { analyzeImage } from '@/lib/analyzer';
 import { toast } from 'sonner';
-import { BlinkUser } from '@blinkdotnew/sdk';
-import { blink } from '@/lib/blink';
+import { BlinkUser as Yad4oUser } from '@blinkdotnew/sdk';
+import { yad4o } from '@/lib/yad4o';
 
 interface DashboardProps {
-  user: BlinkUser;
+  user: Yad4oUser;
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
@@ -25,7 +25,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
 
   const loadHistory = async () => {
     try {
-      const data = await (blink.db as any).history.list({
+      const data = await (yad4o.db as any).history.list({
         orderBy: { createdAt: 'desc' },
         limit: 10
       });
